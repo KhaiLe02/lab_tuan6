@@ -11,21 +11,27 @@
 <th:block th:replace="layout :: header"></th:block>
 <div class="container">
   <h1>Edit Book</h1>
-  <form th:action="@{/books/edit}" th:object="${book}" method="post">
+  <form th:action="@{/books/edit/{id}}" th:object="${book}" method="post">
     <input type="hidden" th:field="*{id}">
-    <div class="col-6 mb-3">
-      <label class="form-label" for="title">Title:</label>
-      <input class="form-control" type="text" th:field="*{title}" id="title"> </div>
-    <div class="col-6 mb-3">
-      <label class="form-label" for="author">Author:</label>
-      <input class="form-control" type="text" th:field="*{author}" id="author"> </div>
-    <div class="col-6 mb-3">
-      <label class="form-label" for="price">Price:</label>
-      <input class="form-control" type="text" th:field="*{price}" id="price"> </div>
-    <div class="col-6 mb-3">
-      <label class="form-label" for="category">Category:</label>
-      <input class="form-control" type="text" th:field="*{category}" id="category"> </div>
-    <input type="submit" value="Save">
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input class="form-control" type="text" th:field="*{title}" id="title">
+    </div>
+    <div class="form-group">
+      <label for="author">Author:</label>
+      <input class="form-control" type="text" th:field="*{author}" id="author">
+    </div>
+    <div class="form-group">
+      <label for="price">Price:</label>
+      <input class="form-control" type="text" th:field="*{price}" id="price">
+    </div>
+    <div class="form-group">
+      <label for="category">Category:</label>
+      <select class="form-control" th:field="*{category.id}" id="category">
+        <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
   </form>
   <br>
   <a th:href="@{/books}">Back to List</a>
