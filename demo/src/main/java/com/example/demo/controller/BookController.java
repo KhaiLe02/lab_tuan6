@@ -17,11 +17,8 @@ public class BookController {
     private BookService bookService;
     @Autowired
     private CategoryService categoryService;
-    @GetMapping
-    public String index(){
-        return "Home/index";
-    }
-    @GetMapping("/list")
+
+    @GetMapping()
     public String showAllBooks(Model model){
         List<Book> books=bookService.getAllBooks();
         model.addAttribute("books",books);
